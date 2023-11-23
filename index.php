@@ -1,41 +1,35 @@
 <?php
 
 $user_number = intval($_GET['my_password']);
-var_dump($user_number);
+
 
 $password_uppercase_letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-var_dump($password_uppercase_letters);
+
 
 $password_lowercase_letters = strtolower($password_uppercase_letters);
-var_dump($password_lowercase_letters);
 
 
-function getRandomIndex($min, $max) {
-    $random_index = mt_rand($min, $max);
+$password_numbers = '0123456789';
 
-    return $random_index;
+
+function getRandomNumber($min, $max) {
+    $random_num = mt_rand($min, $max);
+
+    return $random_num;
 }
 
 
+$full_characters = $password_uppercase_letters . $password_numbers . $password_lowercase_letters;
+
+$password = '';
 
 for ($i = 0; $i < $user_number; $i++ )  {
-    $random_index_up = getRandomIndex(0, 25);
-    $random_index_down = getRandomIndex(0, 25);
-    $random_number = getRandomIndex(0, 99);
-    $pswrd_upcs = $password_uppercase_letters[$random_index_up];
-    $pswrd_lowcs = $password_lowercase_letters[$random_index_down];
-    $pswrd_num = $random_number;    
-    var_dump($pswrd_upcs);  
-    var_dump($pswrd_lowcs); 
-    var_dump($pswrd_num); 
-    
-};
+    $random_index = (getRandomNumber(0, strlen($full_characters)) - 1);    
+    $password .= $full_characters[$random_index];
+    var_dump($password);  
 
+}
 
-
-
-$password = $pswrd_upcs .= $pswrd_lowcs .= $random_number ;    
-var_dump($password);
 
 ?>
 
